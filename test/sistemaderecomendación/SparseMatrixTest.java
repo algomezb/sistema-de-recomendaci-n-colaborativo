@@ -17,22 +17,22 @@ import static org.junit.Assert.*;
  * @author oscar
  */
 public class SparseMatrixTest {
-    
+
     public SparseMatrixTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -42,12 +42,19 @@ public class SparseMatrixTest {
         SparseMatrix matrix = new SparseMatrix(10, 10000);
         assertEquals(matrix.at(0, 0), 0.0, 1e-10);
     }
-    
+
     @Test
     public void testInsertedValues() {
         SparseMatrix matrix = new SparseMatrix(10, 10000);
         matrix.add(1, 2, 3.5);
         assertEquals(matrix.at(1, 2), 3.5, 1e-10);
     }
-    
+
+    @Test
+    public void testGetRow() {
+        SparseMatrix matrix = new SparseMatrix(10, 10000);
+        matrix.add(1, 2, 3.5);
+        SparseVector vector = matrix.getRow(1);
+        assertEquals(vector.at(2), 3.5, 1e-10);
+    }
 }

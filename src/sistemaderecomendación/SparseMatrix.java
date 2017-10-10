@@ -17,12 +17,12 @@ public class SparseMatrix {
 
     private final int rows;
     private final int cols;
-    private final Map storage;
+    private final Map<Map.Entry<Integer, Integer>, Double> storage;
 
     public SparseMatrix(int rows, int cols) {
         this.rows = rows;
         this.cols = cols;
-        this.storage = new HashMap<Map.Entry<Integer, Integer>, Double>();
+        this.storage = new HashMap();
     }
 
     public double at(int row, int col) {
@@ -33,8 +33,18 @@ public class SparseMatrix {
         return 0.0;
     }
 
-    void add(int row, int col, double value) {
+    public void add(int row, int col, double value) {
         Map.Entry<Integer, Integer> key = new SimpleEntry<>(row, col);
         this.storage.put(key, value);
+    }
+    
+    public SparseVector getRow(int row) {
+        SparseVector result = new SparseVector(this.cols);
+        for(Map.Entry<Map.Entry<Integer, Integer>, Double> entry : this.storage.entrySet()) {
+            if (entry.getKey().getKey() == row) {
+                result.add(entry.getKey().getValue(), entry.getValue());
+            }
+        }
+        return result;
     }
 }
