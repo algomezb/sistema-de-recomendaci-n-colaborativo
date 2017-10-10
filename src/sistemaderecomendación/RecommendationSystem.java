@@ -15,9 +15,6 @@ import java.sql.SQLException;
  */
 public class RecommendationSystem {
 
-    Conexion conpg;
-
-
     public static String consulta() throws SQLException {
 
         Connection conn = null;
