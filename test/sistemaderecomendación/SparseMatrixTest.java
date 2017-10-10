@@ -38,9 +38,16 @@ public class SparseMatrixTest {
     }
 
     @Test
-    public void testSomeMethod() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testDefaultValue() {
+        SparseMatrix matrix = new SparseMatrix(10, 10000);
+        assertEquals(matrix.at(0, 0), 0.0, 1e-10);
+    }
+    
+    @Test
+    public void testInsertedValues() {
+        SparseMatrix matrix = new SparseMatrix(10, 10000);
+        matrix.add(1, 2, 3.5);
+        assertEquals(matrix.at(1, 2), 3.5, 1e-10);
     }
     
 }
